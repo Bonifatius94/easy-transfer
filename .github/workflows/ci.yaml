@@ -7,18 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Clone source code
-#        uses: actions/checkout@v4
-#      - name: Setup Go
-#        uses: actions/setup-go@v4
-#      - name: Build project
-#        run: go build
-
-  release:
-    runs-on: windows-latest
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Clone source code
         uses: actions/checkout@v4
@@ -26,12 +16,3 @@ jobs:
         uses: actions/setup-go@v4
       - name: Build project
         run: go build
-      - name: Make GitHub release with binaries
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./easy-transfer.exe
-          asset_name: easy-transfer.exe
-          tag: ${{ github.ref }}
-          overwrite: true
-          body: "New release of easy-transfer"
